@@ -1,9 +1,10 @@
 /*
     TABLE OF CONTENTS
     ---------------------------------------
-    1.0        LOGIN STYLING
-    2.0        NAVBAR STYLING
-    3.0        FONTS
+    1.0		LOGIN STYLING
+    2.0		NAVBAR STYLING
+    3.0		FONTS
+    4.0		TABLES
 */
 
 /***** 1.0 LOGIN STYLING *****/
@@ -17,9 +18,9 @@
 
 .main
 {
-    margin-top: 50px;
+    /*margin-top: 50px;*/
     /*background-color: #f16925 ;*/
-    background-image: url("../img/backGround.jpg");        
+    /*background-image: url("../img/backGround.jpg");*/    
 }
 
 .well {
@@ -85,6 +86,10 @@
     font-weight: bold;
 }
 
+.full-width {
+	width: 100%;
+}
+
 /***** 2.0 NAVBAR STYLING *****/
 .full-navbar {
 	width: 100%;
@@ -113,7 +118,7 @@
 
 .full-navbar ul li a:hover {
 	color: #c1d6e9;
-	text-shadow: 2px 2px #1e486d;
+	/*text-shadow: 2px 2px #1e486d;*/
 }
 
 .full-navbar ul li a:active {
@@ -149,7 +154,7 @@
 }
 
 /***** 3.0 FONTS *****/
-
+/*
 @font-face {
    font-family: "Audimat";
    src: url("audimat-regular.otf");
@@ -169,4 +174,36 @@
    font-family: 'Audimat';
    src: url('audimat-italic.otf');
    font-style: italic;
+}
+*/
+/***** 4.0 TABLES *****/
+.searchbox-container {
+	font-family: "Audimat";
+	font-size: 1.2em;
+}
+
+.searchbox-container input {
+	background-color: #ddd;
+	font-family: "Audimat";
+	font-size: 1.2em;
+}
+
+.associates {
+	width: 100%;
+	border: 2px solid #333;
+	margin-top: 10px;
+	font-family: "Audimat";
+	font-size: 1.2em;
+}
+
+.associates-header {
+	font-weight: bold;
+}
+
+.associates tr:nth-child(odd) {
+	background-color: #ddd;
+}
+
+.associates td {
+	padding: 0 4px;
 }
