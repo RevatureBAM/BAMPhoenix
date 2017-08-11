@@ -44,6 +44,18 @@ body .fc { /* extra precedence to overcome jqui */
 	background-color: green;
 }
 
+.topiccolorred{
+background-color: red;	
+}
+
+.topiccolorblue{
+background-color: blue;
+}
+
+.topiccolorgreen{
+background-color: green;		
+}
+
 .fc-unthemed th,
 .fc-unthemed td,
 .fc-unthemed thead,
