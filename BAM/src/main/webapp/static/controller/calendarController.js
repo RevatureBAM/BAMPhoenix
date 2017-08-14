@@ -266,9 +266,11 @@
                 		method : "GET",
                 		url : url
                 	}).then(function successCallback(response) {
+                		console.log('-------subtopic------'+ JSON.stringify(response.data));
                 		for(var i = 0; i < response.data.length ; i++) {
                     			var title = response.data[i].subtopicName.name;
                         		var dates = response.data[i].subtopicDate;
+                        		
                         	
                         		var a = new Date(dates);  
                                 var year = a.getUTCFullYear();
@@ -286,9 +288,10 @@
 
 //                        		var temp = {title: title, start: formattedTime, end: formattedTime, className:['topiccolorgreen']};
                     			$scope.events.push(temp);
+                    			
                 		}
                 			uiCalendarConfig.calendars['myCalendar'].fullCalendar('addEventSource',$scope.events);
-                		
+                
      //messing with calendar    
                 			var s = "Spring Slides";
                 			$('.topiccolorgreen').attr("id", "Jaydeep");
@@ -443,6 +446,7 @@
                $scope.alertMessage = ('Event Resized to make dayDelta ' + delta);
             };
        
+
             /* add and removes an event source of choice */
             $scope.addRemoveEventSource = function(sources,source) {
               var canAdd = 0;
@@ -493,7 +497,7 @@
             };
             
             if($rootScope.user.role == 1 || $rootScope.currentBatch != null){
-            	console.log("role =" +$rootScope.user.role )
+            	console.log("role =" +$rootScope.user)
             /* config object */
             $scope.uiConfig = {
               calendar:{
@@ -511,7 +515,7 @@
               }
             };
             }else {
-            	console.log("role =" +$rootScope.user.role )
+            	console.log("role =" +$rootScope.user)
             /* config object */
             $scope.uiConfig = {
               calendar:{
