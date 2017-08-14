@@ -201,7 +201,6 @@
 			<artifactId>ojdbc7</artifactId>
 			<version>12.1.0.2</version>
 		</dependency>
-
 <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
 <dependency>
     <groupId>org.hamcrest</groupId>
@@ -233,7 +232,6 @@
 			<version>0.10</version>
 			<scope>test</scope>
 		</dependency>
-
 <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path -->
 <dependency>
     <groupId>com.jayway.jsonpath</groupId>

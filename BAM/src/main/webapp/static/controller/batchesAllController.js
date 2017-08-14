@@ -1,13 +1,4 @@
-var k;
-function formatDate(inputStr) {
-    var timestamp = parseInt(inputStr, 10);
-    var date = new Date(timestamp);
-    return date.toISOString().substr(0, 10);
-}
-var fixeded=[];
-var fixedstart=[];
-
-app.controller('batchesAllController', function($scope, $rootScope, $location, $http,$filter)
+app.controller('batchesAllController', function($scope, $rootScope, $location, $http)
 {	
 	$scope.msg;
 	$rootScope.batchesAll;
@@ -20,22 +11,7 @@ app.controller('batchesAllController', function($scope, $rootScope, $location, $
 		.then(function success(response){
 			$scope.message = true;
 			$scope.msg = 'all batches retreived';
-		
-			
-		
-			
-			for(var i=0;i<response.data.length;i++){
-				response.data[i].startDate=formatDate(response.data[i].startDate)
-				response.data[i].endDate=formatDate(response.data[i].endDate)
-			}
-			
-			$rootScope.batchesAll = response.data
-			
-		
-			
-			
-			
-
+			$rootScope.batchesAll = response.data;
 		}, function error(response){
 			$scope.message = true;
 			$scope.msg = 'all batches not retreived';
@@ -65,5 +41,4 @@ app.controller('batchesAllController', function($scope, $rootScope, $location, $
 	}
 	
 	$scope.getBatchesAll();
-	
 });

@@ -23,7 +23,6 @@ public class LoggerClass {
 	private String interceptedArg = "intercepted arguments : ";
 	private String dataRequest = "data request made at ";
 	private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-
 	
 	/**
 	 * Logging Methods from the Batch service class
@@ -46,7 +45,8 @@ public class LoggerClass {
 		logger.info(intercepted + jp.getSignature().getName());
 		logger.info(interceptedArg + Arrays.toString(jp.getArgs()));
 		logger.info(jp.proceed());
-		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));	
+		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
+		
 	}
 	
 	@Around("execution(* com.bam.service.BatchService.getBatchAll(..))")
@@ -279,14 +279,14 @@ public class LoggerClass {
 		logger.info(jp.proceed()); 
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
-  
 	@Around("execution(* com.bam.service.UsersService.findUserNotInBatch(..))")
 	public void hijackFindUserNotInBatch(ProceedingJoinPoint jp)throws Throwable{
 		logger.info(intercepted + jp.getSignature().getName());
 		logger.info(interceptedArg + Arrays.toString(jp.getArgs()));
 		logger.info(jp.proceed());
-		logger.info(dataRequest +simpleDateFormat.format(new Date(System.currentTimeMillis())));
+		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
+	
 	
 }
 
