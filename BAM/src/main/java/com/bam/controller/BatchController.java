@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bam.bean.Batch;
 import com.bam.service.BatchService;
-import com.bam.service.UsersDetailsService;
+
+import com.bam.service.BamUserService;
 
 @RestController
 @RequestMapping(value = "/api/v1/Batches/")
@@ -31,7 +32,7 @@ public class BatchController {
 
 	@Autowired
 
-	UsersDetailsService bamUserService;
+	BamUserService bamUserService;
 
 
 	@RequestMapping(value = "All", method = RequestMethod.GET, produces = "application/json")

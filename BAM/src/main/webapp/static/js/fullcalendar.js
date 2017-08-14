@@ -4148,7 +4148,13 @@ var MouseFollower = Class.extend(ListenerMixin, {
 
 			if (shouldRevert && revertDuration && !this.isHidden) { // do a revert animation?
 				this.isAnimating = true;
-				complete();
+				this.el.animate({
+					top: this.top0,
+					left: this.left0
+				}, {
+					duration: revertDuration,
+					complete: complete
+				});
 			}
 			else {
 				complete();
