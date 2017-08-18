@@ -12,9 +12,10 @@ import javax.mail.internet.MimeMessage;
 
 public class MailService {
 
-	public static void sendMail(String email) {
+	public static void sendMail(String email,String newPassword) {
 
 
+			////replace these with environtment vairables
         final String username = "revabam@gmail.com";
         final String password = "testing123";
         String receiver= email; //user.getemail
@@ -41,9 +42,9 @@ public class MailService {
             message.setRecipients(Message.RecipientType.TO,
                 InternetAddress.parse(receiver));
             message.setSubject("Recover Password");
-            message.setText("Your temporary password is " + pass);   
-//            message.setText("Your temporary password is " + pass + " " + " Feel free to click the following link login \n" + " "+
-//                    "Login Page: http://localhost:8085/BAM/#/");            
+//          message.setText("Your temporary password is " + pass);   
+           message.setText("Your temporary password is " + newPassword + " " + " Feel free to click the following link login \n" + " "+
+                "Login Page: http://localhost:8085/BAM/#/");            
             
 //            + ", and your username is" +
 //            " " + email + ". Feel free to click the following link to set your own! \n"
