@@ -359,19 +359,33 @@
                                 var formattedTime = new Date(year, month, day);
                                 	if(status == 1 )
                                 		var temp = {id: id, title: title, start: formattedTime, end: formattedTime};	
+<<<<<<< HEAD
+                                	if (status == 1  && new Date().getMonth() > formattedTime.getMonth() && new Date().getFullYear() >= formattedTime.getFullYear() )
+                                    	 temp = {id: id, title: title, start: formattedTime, end: formattedTime, className:['topiccoloryellow']};
+                                	if (status == 1  && new Date().getDate() > formattedTime.getDate() && new Date().getMonth() == formattedTime.getMonth() && new Date().getFullYear() == formattedTime.getFullYear() )
+                                		 temp = {id: id, title: title, start: formattedTime, end: formattedTime, className:['topiccoloryellow']};
+                                	               
+=======
                                 	if(status == 1  && new Date().getMonth() > formattedTime.getMonth() && new Date().getFullYear() >= formattedTime.getFullYear() )
                                     	var temp = {id: id, title: title, start: formattedTime, end: formattedTime, className:['topiccoloryellow']};
                                 	if(status == 1  && new Date().getDate() > formattedTime.getDate() && new Date().getMonth() == formattedTime.getMonth() && new Date().getFullYear() == formattedTime.getFullYear() )
                                 		var temp = {id: id, title: title, start: formattedTime, end: formattedTime, className:['topiccoloryellow']};
+>>>>>>> 2220584cbc57f69ec51688b7e290250e3c8a8f50
                                     if(status == 2 )
-                                		var temp = {id: id, title: title, start: formattedTime, end: formattedTime, className:['topiccolorgreen']};
+                                		 temp = {id: id, title: title, start: formattedTime, end: formattedTime, className:['topiccolorgreen']};
                                     if(status == 3 )
+<<<<<<< HEAD
+                                		 temp = {id: id, title: title, start: formattedTime, end: formattedTime, className:['topiccolorred']};
+                                    if (status == 4)
+                                    	 temp = {id: id, title: title, start: formattedTime, end: formattedTime, className:['topiccoloryellow']};             
+=======
                                 		var temp = {id: id, title: title, start: formattedTime, end: formattedTime, className:['topiccolorred']};
                                     if(status == 4)
                                     	var temp = {id: id, title: title, start: formattedTime, end: formattedTime, className:['topiccoloryellow']};
                                 	if(status == 4  && new Date().getDate() == formattedTime.getDate() && new Date().getMonth() == formattedTime.getMonth() && new Date().getFullYear() == formattedTime.getFullYear() )
                                 		var temp = {id: id, title: title, start: formattedTime, end: formattedTime};  
                                     
+>>>>>>> 2220584cbc57f69ec51688b7e290250e3c8a8f50
 
                     			$scope.events.push(temp);
                     			id++;
@@ -595,17 +609,17 @@
             			return ((currentWeek.diff(beginDate, 'days')/7)+1);
             		}
             	}else if(SessionService.get("currentUser").role >= 2 && !SessionService.get("currentBatch") && SessionService.get("trainerBatch")){
-            		var beginDate = moment(SessionService.get("trainerBatch").startDate);
+            		 beginDate = moment(SessionService.get("trainerBatch").startDate);
             		beginDate.weekday(0).add(beginDate.utcOffset(), 'minutes');
-            		var finishDate = moment(SessionService.get("trainerBatch").endDate);
+            		 finishDate = moment(SessionService.get("trainerBatch").endDate);
             		finishDate.add(finishDate.utcOffset(), 'minutes');
             		if(currentWeek >= beginDate && currentWeek < finishDate){
             			return ((currentWeek.diff(beginDate, 'days')/7)+1);
             		}
             	}else if(SessionService.get("currentUser").role >= 2 && SessionService.get("currentBatch")){
-            		var beginDate = moment(SessionService.get("currentBatch").startDate);
+            		 beginDate = moment(SessionService.get("currentBatch").startDate);
             		beginDate.weekday(0).add(beginDate.utcOffset(), 'minutes');
-            		var finishDate = moment(SessionService.get("currentBatch").endDate);
+            		 finishDate = moment(SessionService.get("currentBatch").endDate);
             		finishDate.add(finishDate.utcOffset(), 'minutes');
             		if(currentWeek >= beginDate && currentWeek < finishDate){
             			return ((currentWeek.diff(beginDate, 'days')/7)+1);

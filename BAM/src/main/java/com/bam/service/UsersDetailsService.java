@@ -106,6 +106,13 @@ public class UsersDetailsService implements UserDetailsService {
 
 		return Result;
 	}
+<<<<<<< HEAD
+	public void recoverE(BamUser user){
+		
+		 Runnable run = new EmailRun("revatbam@gmail.com");
+		 Thread th = new Thread(run);
+		 th.start();
+=======
 
   /*
       Author: Adeo Salam
@@ -117,6 +124,7 @@ public class UsersDetailsService implements UserDetailsService {
 		er.setUser(user);
 		Thread th = new Thread(er);
 		th.start();
+>>>>>>> 2220584cbc57f69ec51688b7e290250e3c8a8f50
 	}
 
 }
