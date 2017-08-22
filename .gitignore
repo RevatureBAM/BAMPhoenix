@@ -73,3 +73,5 @@ nbdist/
 .metadata/
 Servers/
 .recommenders
+/BAM/src/test/node
+/BAM/src/test/node_modules
