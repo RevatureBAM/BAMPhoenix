@@ -34,6 +34,7 @@ public class LoggerClass {
 	 * getBatchAll()
 	 * getBatchByTrainer()
 	 * @author Jonathan Layssard
+	 * @throws CustomException
 	 */
 	@Around("execution(* com.bam.service.BatchService.addOrUpdateBatch(..))")
 	public void hijackAddOrUpdateBranch(ProceedingJoinPoint jp)throws CustomException{
@@ -41,9 +42,9 @@ public class LoggerClass {
 		logger.info(interceptedArg + Arrays.toString(jp.getArgs()));
 		try {
 			logger.info(jp.proceed());
-		} catch (Throwable e) {
+		} catch ( Throwable e) {
+			throw new CustomException(e);
 			
-			logger.error(e);
 		}
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -55,7 +56,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		}
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));	
 	}
@@ -67,7 +69,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		} 
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -79,7 +82,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		} 
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -97,7 +101,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		}
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -109,18 +114,27 @@ public class LoggerClass {
 	 * @author Jonathan Layssard
 	 */
 	@Around("execution(* com.bam.service.EmailRun.getUser(..))")
-	public void hijackGetUser(ProceedingJoinPoint jp)throws Throwable{
+	public void hijackGetUser(ProceedingJoinPoint jp)throws CustomException{
 		logger.info(intercepted + jp.getSignature().getName());
 		logger.info(interceptedArg + Arrays.toString(jp.getArgs()));
-		logger.info(jp.proceed());
+		try {
+			logger.info(jp.proceed());
+		} catch (Throwable e) {
+			throw new CustomException(e);
+		}
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
 	
 	@Around("execution(* com.bam.service.EmailRun.setUser(..))")
-	public void hijackSetUser(ProceedingJoinPoint jp)throws Throwable{
+	public void hijackSetUser(ProceedingJoinPoint jp)throws CustomException{
 		logger.info(intercepted + jp.getSignature().getName());
 		logger.info(interceptedArg + Arrays.toString(jp.getArgs()));
-		logger.info(jp.proceed());
+		try {
+			logger.info(jp.proceed());
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			throw new CustomException(e);
+		}
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
 	
@@ -137,7 +151,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		}
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -154,7 +169,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		}
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -175,7 +191,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		} 
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -187,7 +204,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		}
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -200,7 +218,8 @@ public class LoggerClass {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
 			
-			logger.error(e);
+			throw new CustomException(e);
+
 		}
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -212,7 +231,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		} 
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -224,7 +244,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		} 
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -245,7 +266,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		} 
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -257,7 +279,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		} 
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -269,7 +292,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		}
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -281,7 +305,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		} 
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -293,7 +318,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		} 
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -319,7 +345,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		}
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -331,7 +358,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		} 
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -343,7 +371,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		} 
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -355,7 +384,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		}
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -367,7 +397,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		}
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -380,7 +411,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		} 
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -393,7 +425,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		}
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -406,7 +439,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		}
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -419,7 +453,8 @@ public class LoggerClass {
 		try {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
-			logger.error(e);
+			throw new CustomException(e);
+
 		} 
 		logger.info(dataRequest + simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}
@@ -433,7 +468,8 @@ public class LoggerClass {
 			logger.info(jp.proceed());
 		} catch (Throwable e) {
 			
-			logger.error(e);
+			throw new CustomException(e);
+
 		}
 		logger.info(dataRequest +simpleDateFormat.format(new Date(System.currentTimeMillis())));
 	}

@@ -280,7 +280,7 @@ app.controller(
 					if(!curriculumTypeExists){
 						var metaData = curriculum;
 						delete metaData.weeks;
-						var newCurriculum = {
+						 newCurriculum = {
 								type: curriculum.curriculumName,
 								versions: [{meta:metaData, weeks:[]}]
 						};

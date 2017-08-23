@@ -116,16 +116,16 @@ app.controller('dashboardController', function($http, $scope, SessionService) {
 				}
 			})
 		}else if($scope.userHasBatch){
-			var currentDate = new Date().getTime();
+			 currentDate = new Date().getTime();
 			
 			/**
 			 * Populates the day progress bar by days completed
 			 */
-			var startDate = SessionService.get("currentUser").batch.startDate;
-			var endDate = SessionService.get("currentUser").batch.endDate;
+			 startDate = SessionService.get("currentUser").batch.startDate;
+			 endDate = SessionService.get("currentUser").batch.endDate;
 			
-			var daysComplete = currentDate - startDate;
-			var totalDays = endDate - startDate;
+			 daysComplete = currentDate - startDate;
+			 totalDays = endDate - startDate;
 			
 			$scope.percent = Math.round((daysComplete * 100) / totalDays) + "%";
 			
@@ -139,12 +139,12 @@ app.controller('dashboardController', function($http, $scope, SessionService) {
 				 * Counts the difference in weeks between the current batch start date and today's date
 				 * @return current batch week number
 				 */
-				function weeksBetween(d1, d2) {
+				function weeksBetween2(d1, d2) {
 				    return Math.round((d2 - d1) / (7 * 24 * 60 * 60 * 1000));
 				}
 				
-				var dif = weeksBetween($scope.currentBatchStart1, currentDate);
-				$scope.weekNum = dif;
+				var difference = weeksBetween($scope.currentBatchStart1, currentDate);
+				$scope.weekNum = difference;
 						
 			$http({
 				url: "rest/api/v1/Users/InBatch",
@@ -235,7 +235,7 @@ app.controller('dashboardController', function($http, $scope, SessionService) {
             					$scope.completed += 1;
             				};
             			}else if($scope.userHasBatch){
-            				var status= response.data[i].status.id;
+            				 response.data[i].status.id;
                 				
             					if (status == 2 || status == 3){
             						$scope.completed += 1;
@@ -251,8 +251,10 @@ app.controller('dashboardController', function($http, $scope, SessionService) {
             		 * Populates dynamic list of missed subtopics and their respective topics
             		 */
 
-             		for(var i = 0; i < $scope.subTopics.length ; i++) {
-                		var status= response.data[i].status.id;
+
+             		for(var j = 0; i < $scope.subTopics.length ; i++) {
+                		status= response.data[i].status.id;
+
                  		
                  		
                      		if(status == 4){
@@ -270,7 +272,7 @@ app.controller('dashboardController', function($http, $scope, SessionService) {
                      				}
                      			
                      			}else {
-                     				var topicNameExists = false;
+                     				topicNameExists = false;
                                  	for(k in $scope.topicArray){
                      					if($scope.topicArray[k] == "Other"){
                      						topicNameExists = true;
@@ -299,18 +301,18 @@ app.controller('dashboardController', function($http, $scope, SessionService) {
              		
              		
              		for(var k = 0; k < $scope.subTopics.length ; k++) {
-                		var status= response.data[k].status.id;
-                 		var title = response.data[k].subtopicName.name
+                		 	status= response.data[k].status.id;
+                 			title = response.data[k].subtopicName.name
                  		
                      		if(status == 4){
                      			if(response.data[k].subtopicName.topic){
-                     				var topicName = response.data[k].subtopicName.topic.name;
+                     				topicName = response.data[k].subtopicName.topic.name;
                      				
                      					for(var l = 0; l < $scope.topicArray.length ; l++){
                      						if(topicName == $scope.topicArray[l]){
-                     	     					var docElement = document.getElementById(topicName);
-                     	     					var createLI = document.createElement("LI");
-                     	                 		var textNode = document.createTextNode(title);
+                     							docElement = document.getElementById(topicName);
+                     							createLI = document.createElement("LI");
+                     							textNode = document.createTextNode(title);
                      	                 		
                      	                 		createLI.className += "listItem";
                      	     					
@@ -322,9 +324,9 @@ app.controller('dashboardController', function($http, $scope, SessionService) {
                      					}
                      					
                      			}else if(!response.data[k].subtopicName.topic && document.getElementById("Other")){
-                 	     			var docElement = document.getElementById("Other");
-                 	     			var createLI = document.createElement("LI");
-                 	     			var textNode = document.createTextNode(title);
+                     				docElement = document.getElementById("Other");
+                     				createLI = document.createElement("LI");
+                     				textNode = document.createTextNode(title);
                  	                 		
                  	     			createLI.className += "listItem";
                  	     					
@@ -358,7 +360,9 @@ app.controller('dashboardController', function($http, $scope, SessionService) {
 			})
 			.then(function success(response){
 				$scope.batchCount = 0;
-				for(var m = 0; m < response.data.length; m++){
+
+				for(var m=0; m < response.data.length; m++){
+
 					if(response.data[m].trainer.userId == SessionService.get("currentUser").userId){
 						if(currentDate < response.data[m].endDate && currentDate > response.data[m].startDate){
 							var batchDropdown = document.getElementById("batchDropdown");
@@ -383,7 +387,9 @@ app.controller('dashboardController', function($http, $scope, SessionService) {
 					
 					$scope.$apply(function(){ 
 						
-						for(var n = 0; n < response.data.length; n++){
+
+						for(var n=0; n < response.data.length; n++){
+
 							if(response.data[n].id == $scope.changeInfo){
 						/**
 	            		 * Populates the day progress bar by days completed when new option selected
@@ -393,8 +399,8 @@ app.controller('dashboardController', function($http, $scope, SessionService) {
 	            				startDate = response.data[n].startDate;
 	            				endDate = response.data[n].endDate;
 	            				
-	            				var daysComplete = currentDate - startDate;
-	            				var totalDays = endDate - startDate;
+	            				daysComplete = currentDate - startDate;
+	            				totalDays = endDate - startDate;
 	            				
 	            				$scope.percent = Math.round((daysComplete * 100) / totalDays) + "%";
 	            				
@@ -403,8 +409,8 @@ app.controller('dashboardController', function($http, $scope, SessionService) {
 	            				startDate = SessionService.get("currentUser").batch.startDate;
 	            				endDate = SessionService.get("currentUser").batch.endDate;
 	            				
-	            				var daysComplete = currentDate - startDate;
-	            				var totalDays = endDate - startDate;
+	            				 daysComplete = currentDate - startDate;
+	            				 totalDays = endDate - startDate;
 	            				
 	            				$scope.percent = Math.round((daysComplete * 100) / totalDays) + "%";
 	            			}
