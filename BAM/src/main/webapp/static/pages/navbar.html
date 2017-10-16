@@ -1,5 +1,5 @@
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded"
-	style="margin-bottom: 50px;" ng-controller="navController">
+	style="margin-bottom: 50px;" >
 	<button class="navbar-toggler navbar-toggler-right" type="button"
 		data-toggle="collapse" data-target="#navbarNavAltMarkup"
 		aria-controls="navbarNavAltMarkup" aria-expanded="false"
@@ -17,7 +17,7 @@
 					<li class="dropdown-item"><a href="#/myBatches" class="nodec">My Batches</a></li>
 				</ul>
 			<a class="nav-item nav-link" href="#/calendar" analytics-on="click" analytics-event="Download" ng-init="refresh()" ng-show="user.role>=2 || user.batch">Last Viewed Calendar</a>
-			<a class="nav-item nav-link" href="#/curriculum" analytics-on="click" analytics-event="Download" ng-show="user.role>=2">Template Editor</a>
+			<a class="nav-item nav-link" href="#curriculum" analytics-on="click" analytics-event="Download" ng-show="user.role>=2">Template Editor</a>
 		</div>
 	</div>
 	<div class="nav justify-content-end">
@@ -25,12 +25,13 @@
 			aria-expanded="false"><span class="navbar-text">
 				{{user.fName}} {{user.lName}} {{userRole}}</span></a>
 		<ul class="dropdown-menu dropdown-menu-right">
-			<li class="dropdown-item"><a href="#/update" analytics-on="click" analytics-event="Download" class="nodec">Update
-					Account</a></li>
-			<li class="dropdown-item"><a href="#/reset" analytics-on="click" analytics-event="Download" class="nodec">Reset
-					Password</a></li>
-			<li class="logoutli createPointer"><button class="btn btn-default" analytics-on="click" analytics-event="Download" ng-click="hideNav()" style="margin-top: 10px;" 
-				onclick="window.open('#/logout', '_self');">Log Out</button></li>
+			<li class="logoutli createPointer">
+				<form method="GET" action="/rest/api/v1/Salesforce/logout">
+					<button class="btn btn-default" analytics-on="click" analytics-event="Download" style="margin-top: 10px;">
+						Log Out
+					</button>
+				</form>
+			</li>
 
 		</ul>
 	</div>
