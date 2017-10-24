@@ -1,68 +1,87 @@
 package com.bam.bean;
 
-import javax.persistence.*;
-
-
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.persistence.*;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
 
 
 @Entity
 @Table(name = "USERS")
 @Component
+@ApiModel("User")
 public class BamUser {
 
 	@Id
 	@Column(name = "User_Id")
 	@SequenceGenerator(name = "USERID_SEQ", sequenceName = "USERID_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERID_SEQ")
+	@ApiModelProperty(notes = "User Id")
 	private int userId;
 
 	@Column(name = "First_Name")
 	@NotEmpty(message = "First name cannot be empty")
+	@ApiModelProperty(notes = "First name")
 	private String fName;
 
 	@Column(name = "Middle_Name")
+	@ApiModelProperty(notes = "Middle name")
 	private String mName;
 
 	@Column(name = "Last_Name")
 	@NotEmpty(message = "Last name cannot be empty")
+	@ApiModelProperty(notes = "Last name")
 	private String lName;
 
-	@Column(name = "eMail")
+	@Column(name = "Email")
 	@NotEmpty(message = "e-mail address cannot be empty")
+	@ApiModelProperty(notes = "Email")
 	private String email;
 
 	@Column(name = "Password")
-	@NotEmpty(message="Password cannot be empty")
+//	@NotEmpty(message="Password cannot be empty")
+	@JsonIgnore
+	@ApiModelProperty("Password")
 	private String pwd;
-	
+
 	@Column(name = "Role") // Role 1 is for associates // Role 2 is for trainers & QC
+	@ApiModelProperty("Role id")
 	private int role; // Role 3 is for admins
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "BATCH_ID", referencedColumnName = "BATCH_ID")
 	@Autowired // Batch ID should only be used for associates. DO NOT use this
+	@ApiModelProperty(notes = "Batch user is enrolled in, not used to assigned trainers to a batch.")
 	private Batch batch; // field to assign a batch to a trainer. It should be
 							// null for
 							// trainers and admins. A trainer is assigned in the
 							// Batches table.
 	@Column(name = "Main_Phone")
-	@NotEmpty(message = "Primary phone cannot be empty")
+//	@NotEmpty(message = "Primary phone cannot be empty")
 	private String phone;
 
 	@Column(name = "Second_Phone")
+	@ApiModelProperty(notes = "Alternative phone number.")
 	private String phone2;
 
 	@Column(name = "Skype_ID")
+	@ApiModelProperty(notes = "Skype id")
 	private String skype;
 
 	@Column(name = "Password_Bak") // This is a backup password that will be
 									// used when
+	@ApiModelProperty(notes = "Backup password used when user resets their password.")
 	private String pwd2; // the user needs to reset their password.
 
-	@Column(name="AssignForce_ID")
+	@Column(name="Assignforce_ID")
+	@ApiModelProperty("AssignForce id")
 	private Integer assignForceID;
 	
 	
@@ -73,6 +92,10 @@ public class BamUser {
 	public BamUser(String fName, String mName, String lName, String email, String pwd, int role, Batch batch,
 			String phone, String phone2, String skype, String pwd2) {//NOSONAR
 		super();
+
+		if ( (role == 2) && (batch != null) )
+			throw new IllegalStateException("Trainers cannot have a batch!");
+
 		this.fName = fName;
 		this.mName = mName;
 		this.lName = lName;
@@ -89,6 +112,10 @@ public class BamUser {
 	public BamUser(int userId, String fName, String mName, String lName, String email, String pwd, int role,
 			Batch batch, String phone, String phone2, String skype, String pwd2) {//NOSONAR
 		super();
+
+		if ( (role == 2) && (batch != null) )
+			throw new IllegalStateException("Trainers cannot have a batch!");
+
 		this.fName = fName;
 		this.mName = mName;
 		this.lName = lName;
@@ -106,6 +133,10 @@ public class BamUser {
 	public BamUser(int userId, String fName, String mName, String lName, String email, String pwd, int role,
 			Batch batch, String phone, String phone2, String skype, String pwd2, Integer AssignForceID) {//NOSONAR
 		super();
+
+		if ( (role == 2) && (batch != null) )
+			throw new IllegalStateException("Trainers cannot have a batch!");
+
 		this.userId = userId;
 		this.fName = fName;
 		this.mName = mName;
@@ -182,6 +213,10 @@ public class BamUser {
 	}
 
 	public void setBatch(Batch batch) {
+
+		if ( (role == 2) && (batch != null) )
+			throw new IllegalStateException("Trainers cannot have a batch!");
+
 		this.batch = batch;
 	}
 

@@ -18,8 +18,15 @@ public class CurriculumSubtopicService {
 	public List<CurriculumSubtopic> getCurriculumSubtopicForCurriculum(Curriculum c){
 		return curriculumSubtopic.findByCurriculum(c);
 	}
+
+	public List<CurriculumSubtopic> getCurriculums(){
+		return curriculumSubtopic.findAll();
+	}
 	
 	public void saveCurriculumSubtopic(CurriculumSubtopic cs){
+		if (cs == null)
+			throw new IllegalArgumentException("Can't save null!");
+
 		curriculumSubtopic.save(cs);
 	}
 	

@@ -19,8 +19,12 @@ public class CurriculumService {
 		//obfuscate password
 		for(Curriculum element : curriculumList){
 			element.getCurriculumCreator().setPwd("");
+			element.getCurriculumCreator().setPwd2("");
 			if(element.getCurriculumModifier() != null)
+			{
 				element.getCurriculumModifier().setPwd("");
+				element.getCurriculumModifier().setPwd2("");
+			}
 		}
 		return curriculumList;
 	}
@@ -28,17 +32,39 @@ public class CurriculumService {
 	public Curriculum getCuricullumById(Integer id){
 		//obfuscate password
 		Curriculum curriculum = curriculumRepository.findById(id);
+
+		if (curriculum == null)
+			return null;
+
 		curriculum.getCurriculumCreator().setPwd("");
+		curriculum.getCurriculumCreator().setPwd2("");
 		if(curriculum.getCurriculumModifier() != null)
+		{
 			curriculum.getCurriculumModifier().setPwd("");
+			curriculum.getCurriculumModifier().setPwd2("");
+		}
 		return curriculum;
 	}
 	
 	public void save(Curriculum c){
+		if (c == null)
+			throw new IllegalArgumentException("Can't save null!");
+
 		curriculumRepository.save(c);
 	}
 	
 	public List<Curriculum> findAllCurriculumByName(String name){
-		return curriculumRepository.findByCurriculumName(name);
+		List<Curriculum> curriculumList = curriculumRepository.findByCurriculumName(name);
+		//obfuscate password
+		for(Curriculum element : curriculumList){
+			element.getCurriculumCreator().setPwd("");
+			element.getCurriculumCreator().setPwd2("");
+			if(element.getCurriculumModifier() != null)
+			{
+				element.getCurriculumModifier().setPwd("");
+				element.getCurriculumModifier().setPwd2("");
+			}
+		}
+		return curriculumList;
 	}
 }
